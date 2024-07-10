@@ -1,0 +1,6 @@
+{
+    "name": "repro",
+    "dependencies": [
+        "qtbase"
+    ]
+}

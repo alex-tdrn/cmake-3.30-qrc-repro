@@ -1,0 +1,117 @@
+{
+    "version": 7,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        },
+        {
+            "name": "vcpkg",
+            "hidden": true,
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "cacheVariables": {
+            }
+        },
+        {
+            "name": "msvc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "gcc",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "ninja",
+            "hidden": true,
+            "generator": "Ninja",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE": "x64"
+            }
+        },
+        {
+            "name": "make",
+            "hidden": true,
+            "generator": "Unix Makefiles"
+        },
+        {
+            "name": "debug",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg_msvc_ninja_debug",
+            "inherits": [
+                "base",
+                "vcpkg",
+                "msvc",
+                "ninja",
+                "debug"
+            ]
+        },
+        {
+            "name": "vcpkg_msvc_ninja_release",
+            "inherits": [
+                "base",
+                "vcpkg",
+                "msvc",
+                "ninja",
+                "release"
+            ]
+        },
+        {
+            "name": "vcpkg_gcc_ninja_debug",
+            "inherits": [
+                "base",
+                "vcpkg",
+                "gcc",
+                "ninja",
+                "debug"
+            ]
+        },
+        {
+            "name": "vcpkg_gcc_make_debug",
+            "inherits": [
+                "base",
+                "vcpkg",
+                "gcc",
+                "make",
+                "debug"
+            ]
+        },
+        {
+            "name": "gcc_ninja_debug",
+            "inherits": [
+                "base",
+                "gcc",
+                "ninja",
+                "debug"
+            ]
+        }
+    ]
+}
